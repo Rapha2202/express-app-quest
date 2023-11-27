@@ -1,8 +1,5 @@
 const express = require("express");
-
 const app = express();
-
-const port = 5000;
 
 const welcome = (req, res) => {
   res.send("Welcome to my favourite movie list");
@@ -51,16 +48,10 @@ const getMovieById = (req, res) => {
   if (movie != null) {
     res.json(movie);
   } else {
-    res.status(404).send("Not Found");
+    res.sendStatus(404);
   }
 };
 
 app.get("/api/movies/:id", getMovieById);
 
-app
-  .listen(port, () => {
-    console.info(`Server is listening on port ${port}`);
-  })
-  .on("error", (err) => {
-    console.error("Error:", err.message);
-  });
+module.exports = app;
